@@ -1,0 +1,39 @@
+<html>
+onMounted(() => {
+const route = useRoute();
+
+// List of params for MikroTik
+const mikrotikParams = [
+'identity', 'login_by', 'plain_passwd', 'serveraddress', 'ssl_login', 'server_name',
+'link_login', 'link_login_only', 'link_logout', 'link_status', 'link_orig', 'domain',
+'interface_name', 'ip', 'logged_in', 'mac', 'trial', 'username', 'host_ip', 'vlan_id',
+'idle_timeOut', 'idle_timeout_secs', 'limit_bytes_in', 'limit_bytes_out', 'refresh_timeout',
+'refresh_timeout_secs', 'session_timeout', 'session_timeout_secs', 'session_time_left',
+'session_time_left_secs', 'upTime', 'upTime_secs', 'bytes_in', 'bytes_in_nice', 'bytes_out',
+'bytes_out_nice', 'packets_in', 'packets_out', 'remain_bytes_in', 'remain_bytes_out',
+'variable', 'error', 'error_orig', 'chap_id', 'chap_challenge', 'popup', 'advert_pending',
+'http_status', 'http_header'
+];
+
+// List of params for Aruba
+const arubaParams = [
+'cmd', 'mac', 'essid', 'ip', 'apname', 'apmac', 'vcname', 'switchip', 'url'
+];
+
+// Check if any MikroTik params exist in the URL
+const isMikroTik = mikrotikParams.every(param => route.query.hasOwnProperty(param));
+
+// Check if any Aruba params exist in the URL
+const isAruba = arubaParams.every(param => route.query.hasOwnProperty(param));
+
+if (isMikroTik) {
+console.log('This is a MikroTik device');
+// Do something specific for MikroTik
+} else if (isAruba) {
+console.log('This is an Aruba device');
+// Do something specific for Aruba
+} else {
+console.log('Unknown device');
+}
+});
+</html>
